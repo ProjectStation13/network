@@ -20,7 +20,7 @@ public class ClientCharacterAssignment implements IClientVisit {
     }
 
     @Override
-    public List<IServerVisit> visit(IClientWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap) throws VisitException {
+    public List<IServerVisit> visit(IClientWorldHandler handler) throws VisitException {
         handler.setPlayerEntity(entityName);
         return new ArrayList<>();
     }

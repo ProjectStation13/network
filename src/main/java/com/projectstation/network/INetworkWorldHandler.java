@@ -1,5 +1,6 @@
 package com.projectstation.network;
 
+import com.projectstation.network.entity.IEntityNetworkAdapter;
 import io.github.jevaengine.world.World;
 import io.github.jevaengine.world.entity.IEntityFactory;
 
@@ -11,4 +12,6 @@ public interface INetworkWorldHandler {
     boolean isOwner(String entityName);
 
     IEntityFactory getEntityFactory();
+
+    IEntityNetworkAdapter getAdapter(String entityName);
 }

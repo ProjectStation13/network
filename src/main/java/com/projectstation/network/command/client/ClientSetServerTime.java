@@ -20,7 +20,7 @@ public class ClientSetServerTime implements IClientVisit {
     }
 
     @Override
-    public List<IServerVisit> visit(IClientWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap) throws VisitException {
+    public List<IServerVisit> visit(IClientWorldHandler handler) throws VisitException {
 
         //Half because it is the time for there and back.
         long latency = (System.nanoTime() / 1000000 - requestTime) / 2;

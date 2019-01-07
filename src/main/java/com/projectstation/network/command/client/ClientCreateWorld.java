@@ -29,7 +29,7 @@ public class ClientCreateWorld implements IClientVisit {
     }
 
     @Override
-    public List<IServerVisit> visit(IClientWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap) throws VisitException {
+    public List<IServerVisit> visit(IClientWorldHandler handler) throws VisitException {
         World w = new World(worldWidth, worldHeight, friction, metersPerUnit, logicPerUnit, new IWeatherFactory.NullWeather(), handler.getPhysicsWorldFactory(), handler.getEffectMapFactory(), handler.getParallelEntityFactory(), null);
         handler.setWorld(w);
 

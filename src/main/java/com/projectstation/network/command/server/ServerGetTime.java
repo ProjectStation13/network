@@ -21,7 +21,7 @@ public class ServerGetTime implements IServerVisit {
     }
 
     @Override
-    public List<IClientVisit> visit(IServerWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap) throws VisitException {
+    public List<IClientVisit> visit(IServerWorldHandler handler) throws VisitException {
         List<IClientVisit> response = new ArrayList<>();
         handler.setClientTime(clientTime);
         response.add(new ClientSetServerTime(creationTime, System.nanoTime() / 1000000));

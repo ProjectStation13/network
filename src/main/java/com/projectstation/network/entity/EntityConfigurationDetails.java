@@ -1,6 +1,7 @@
 package com.projectstation.network.entity;
 
 import io.github.jevaengine.config.IImmutableVariable;
+import io.github.jevaengine.config.NullVariable;
 import io.github.jevaengine.util.Nullable;
 
 import java.io.Serializable;
@@ -43,7 +44,7 @@ public class EntityConfigurationDetails implements Serializable {
 
     @Nullable
     public IImmutableVariable getAuxConfig() {
-        return auxConfig;
+        return auxConfig == null ? new NullVariable() : auxConfig;
     }
 
     public String getTypeName() {

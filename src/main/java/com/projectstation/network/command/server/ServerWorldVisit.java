@@ -18,7 +18,7 @@ public class ServerWorldVisit implements IServerVisit {
     }
 
     @Override
-    public List<IClientVisit> visit(IServerWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap) throws VisitException {
+    public List<IClientVisit> visit(IServerWorldHandler handler) throws VisitException {
         if(!handler.hasWorld())
             throw new VisitException("World not present to be visited.");
 
@@ -26,7 +26,7 @@ public class ServerWorldVisit implements IServerVisit {
         long elapsedTime = handler.getClientTime() - creationTime;
 
         List<IClientVisit> response = new ArrayList<>();
-        List<WorldVisit> worldVisitResponse = worldVisit.visit(handler, networkEntityMap, handler.getEntityFactory(), handler.getWorld(), elapsedTime, true);
+        List<WorldVisit> worldVisitResponse = worldVisit.visit(handler, handler.getEntityFactory(), handler.getWorld(), elapsedTime, true);
         for(WorldVisit v : worldVisitResponse)
             response.add(new ClientWorldVisit(v));
 

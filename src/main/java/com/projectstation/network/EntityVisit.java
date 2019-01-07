@@ -29,14 +29,14 @@ public abstract class EntityVisit<T extends IEntity> extends WorldVisit {
     }
 
     @Override
-    public final List<WorldVisit> visit(INetworkWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap, IEntityFactory entityFactory, World world, long deltaTime, boolean isServer) throws VisitException {
+    public final List<WorldVisit> visit(INetworkWorldHandler handler, IEntityFactory entityFactory, World world, long deltaTime, boolean isServer) throws VisitException {
         T entity = world.getEntities().getByName(cls, entityName);
 
         if(entity == null) {
             throw new VisitException("Entity of class " + cls.getName() + " and name " + entityName + " could not be found.");
         }
 
-        IEntityNetworkAdapter netAdapter = networkEntityMap.containsKey(entityName) ? networkEntityMap.get(entityName) : null;
+        IEntityNetworkAdapter netAdapter = handler.getAdapter(entityName);
         boolean isOwner = handler.isOwner(entityName);
         this.isServer = isServer;
         return visitEntity(entity, netAdapter, deltaTime, isOwner);

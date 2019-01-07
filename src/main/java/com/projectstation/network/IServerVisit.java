@@ -10,5 +10,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface IServerVisit extends INetworkVisit {
-    List<IClientVisit> visit(IServerWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap) throws VisitException;
+    List<IClientVisit> visit(IServerWorldHandler handler) throws VisitException;
 }

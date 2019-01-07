@@ -10,7 +10,7 @@ import java.util.Map;
 
 public abstract class WorldVisit implements Serializable {
 
-    public abstract List<WorldVisit> visit(INetworkWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap, IEntityFactory entityFactory, World world, long timeElapsedSinceDispatch, boolean isServer) throws VisitException;
+    public abstract List<WorldVisit> visit(INetworkWorldHandler handler, IEntityFactory entityFactory, World world, long timeElapsedSinceDispatch, boolean isServer) throws VisitException;
 
     public boolean isPriorRedundant(WorldVisit prior) {
         return false;

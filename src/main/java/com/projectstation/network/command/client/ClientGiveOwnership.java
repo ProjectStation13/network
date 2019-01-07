@@ -18,7 +18,7 @@ public class ClientGiveOwnership implements IClientVisit {
     }
 
     @Override
-    public List<IServerVisit> visit(IClientWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap) throws VisitException {
+    public List<IServerVisit> visit(IClientWorldHandler handler) throws VisitException {
         handler.giveOwnership(entityName);
 
         return new ArrayList<>();

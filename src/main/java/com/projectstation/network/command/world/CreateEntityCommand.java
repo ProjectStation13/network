@@ -41,7 +41,7 @@ public class CreateEntityCommand extends WorldVisit {
     }
 
     @Override
-    public List<WorldVisit> visit(INetworkWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap, IEntityFactory entityFactory, World world, long deltaTime, boolean isServer) throws VisitException {
+    public List<WorldVisit> visit(INetworkWorldHandler handler, IEntityFactory entityFactory, World world, long deltaTime, boolean isServer) throws VisitException {
         InputStream is = new ByteArrayInputStream(entityConfig.getBytes(StandardCharsets.UTF_8));
 
         try {

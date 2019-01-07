@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class ServerInitializeWorldRequest implements IServerVisit {
     @Override
-    public List<IClientVisit> visit(IServerWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap) throws VisitException {
+    public List<IClientVisit> visit(IServerWorldHandler handler) throws VisitException {
         if(!handler.hasWorld())
             throw new VisitException("No world to be initialized from.");
 
@@ -29,7 +29,7 @@ public class ServerInitializeWorldRequest implements IServerVisit {
                 world.getLogicPerUnit()));
 
         for(IEntity e : world.getEntities().all()) {
-            IEntityNetworkAdapter net = networkEntityMap.containsKey(e.getInstanceName()) ? networkEntityMap.get(e.getInstanceName()) : null;
+            IEntityNetworkAdapter net = handler.getAdapter(e.getInstanceName());
 
             try {
                 if (net != null) {

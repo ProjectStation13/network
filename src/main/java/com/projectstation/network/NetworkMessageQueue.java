@@ -11,7 +11,6 @@ public class NetworkMessageQueue<T extends INetworkVisit> {
     private void compress() {
         boolean removed = true;
 
-        int count = 0;
         while (removed && visits.size() >= 2) {
             removed = false;
             T recent = visits.poll();
@@ -25,9 +24,6 @@ public class NetworkMessageQueue<T extends INetworkVisit> {
                 visits.addFirst(recent);
             }
         }
-
-        if(count > 0)
-            System.out.println("Removed " + count + " redundant messages.");
     }
 
     public T poll() {

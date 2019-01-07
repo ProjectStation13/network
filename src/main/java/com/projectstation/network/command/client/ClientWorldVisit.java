@@ -18,14 +18,14 @@ public class ClientWorldVisit implements IClientVisit {
     }
 
     @Override
-    public List<IServerVisit> visit(IClientWorldHandler handler, Map<String, IEntityNetworkAdapter> networkEntityMap) throws VisitException {
+    public List<IServerVisit> visit(IClientWorldHandler handler) throws VisitException {
         if(!handler.hasWorld())
             throw new VisitException("World not present to be visited.");
 
         long elapsedTime = Math.max(0, handler.getServerTime() - creationTime);
 
         List<IServerVisit> response = new ArrayList<>();
-        List<WorldVisit> worldVisitResponse = worldVisit.visit(handler, networkEntityMap, handler.getEntityFactory(), handler.getWorld(), elapsedTime, false);
+        List<WorldVisit> worldVisitResponse = worldVisit.visit(handler, handler.getEntityFactory(), handler.getWorld(), elapsedTime, false);
         for(WorldVisit v : worldVisitResponse)
             response.add(new ServerWorldVisit(v));
 
