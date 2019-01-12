@@ -39,8 +39,8 @@ public abstract class EntityVisit<T extends IEntity> extends WorldVisit {
         IEntityNetworkAdapter netAdapter = handler.getAdapter(entityName);
         boolean isOwner = handler.isOwner(entityName);
         this.isServer = isServer;
-        return visitEntity(entity, netAdapter, deltaTime, isOwner);
+        return visitEntity(handler, entity, netAdapter, deltaTime, isOwner);
     }
 
-    public abstract List<WorldVisit> visitEntity(T entity, @Nullable IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) throws VisitException;
+    public abstract List<WorldVisit> visitEntity(INetworkWorldHandler handler, T entity, @Nullable IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) throws VisitException;
 }

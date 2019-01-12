@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface IEntityNetworkAdapter {
 
-    List<WorldVisit> createInitializeSteps() throws EntityNetworkAdapterException;
-
     void setSteeringBehaviour(ISteeringBehavior behaviour);
     void setSpeed(float speed);
 

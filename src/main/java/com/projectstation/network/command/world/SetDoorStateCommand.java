@@ -1,6 +1,7 @@
 package com.projectstation.network.command.world;
 
 import com.projectstation.network.EntityVisit;
+import com.projectstation.network.INetworkWorldHandler;
 import com.projectstation.network.VisitException;
 import com.projectstation.network.WorldVisit;
 import com.projectstation.network.entity.IEntityNetworkAdapter;
@@ -18,7 +19,7 @@ public class SetDoorStateCommand extends EntityVisit<Door> {
     }
 
     @Override
-    public List<WorldVisit> visitEntity(Door entity, IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) throws VisitException {
+    public List<WorldVisit> visitEntity(INetworkWorldHandler handler, Door entity, IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) throws VisitException {
 
         boolean locked = entity.isLocked();
         entity.unlock();

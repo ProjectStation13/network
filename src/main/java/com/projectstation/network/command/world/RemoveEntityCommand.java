@@ -11,20 +11,14 @@ import io.github.jevaengine.world.entity.IEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SetEntityPositionCommand extends EntityVisit<IEntity> {
-    private final Vector3F location;
-    private final Direction direction;
-
-    public SetEntityPositionCommand(String entityName, Vector3F location, Direction direction) {
+public class RemoveEntityCommand extends EntityVisit<IEntity> {
+    public RemoveEntityCommand(String entityName) {
         super(IEntity.class, entityName);
-        this.location = location;
-        this.direction = direction;
     }
 
     @Override
     public List<WorldVisit> visitEntity(INetworkWorldHandler handler, IEntity entity, IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) {
-        entity.getBody().setDirection(direction);
-        entity.getBody().setLocation(location);
+        handler.getWorld().removeEntity(entity);
 
         return new ArrayList<>();
     }

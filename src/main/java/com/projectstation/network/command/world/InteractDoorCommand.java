@@ -19,7 +19,7 @@ public class InteractDoorCommand extends EntityVisit<Door> {
     }
 
     @Override
-    public List<WorldVisit> visitEntity(Door entity, IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) {
+    public List<WorldVisit> visitEntity(INetworkWorldHandler handler, Door entity, IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) {
         if(entity.isOpen())
             entity.close();
         else

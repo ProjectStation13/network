@@ -28,7 +28,7 @@ public class SetEntityVelocityCommand extends EntityVisit<IEntity> {
     }
 
     @Override
-    public List<WorldVisit> visitEntity(IEntity entity, IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) {
+    public List<WorldVisit> visitEntity(INetworkWorldHandler handler, IEntity entity, IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) {
 
         if(Math.abs(location.z - entity.getBody().getLocation().z) > 0.01f) {
             Vector3F newLoc = entity.getBody().getLocation();
