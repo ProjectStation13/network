@@ -54,6 +54,7 @@ public class CreateProjectileCommand extends WorldVisit {
                 projectile.setTravelDirection(direction);
                 projectile.getBody().setLocation(location.add(direction.multiply(projectile.getSpeed() * deltaTime / 1000.0f)));
                 projectile.setIgnore(world.getEntities().getByName(IEntity.class, ignore));
+                projectile.setCollidable(false);
             }
         } catch (ValueSerializationException | IOException | IEntityFactory.EntityConstructionException | URISyntaxException ex) {
             throw new VisitException(ex);
