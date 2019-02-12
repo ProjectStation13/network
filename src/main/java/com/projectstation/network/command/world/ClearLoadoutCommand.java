@@ -5,12 +5,7 @@ import com.projectstation.network.INetworkWorldHandler;
 import com.projectstation.network.VisitException;
 import com.projectstation.network.WorldVisit;
 import com.projectstation.network.entity.IEntityNetworkAdapter;
-import io.github.jevaengine.rpg.entity.character.ILoadout;
 import io.github.jevaengine.rpg.entity.character.IRpgCharacter;
-import io.github.jevaengine.rpg.item.IItem;
-import io.github.jevaengine.rpg.item.IItemSlot;
-import io.github.jevaengine.rpg.item.IItemStore;
-import io.github.jevaengine.rpg.item.usr.UsrWieldTarget;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

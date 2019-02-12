@@ -1,19 +1,16 @@
 package com.projectstation.network.command.world;
 
+import com.jevaengine.spacestation.item.SpaceCharacterWieldTarget;
 import com.projectstation.network.EntityVisit;
 import com.projectstation.network.INetworkWorldHandler;
 import com.projectstation.network.VisitException;
 import com.projectstation.network.WorldVisit;
 import com.projectstation.network.entity.IEntityNetworkAdapter;
-import io.github.jevaengine.math.Vector3F;
 import io.github.jevaengine.rpg.entity.character.ILoadout;
 import io.github.jevaengine.rpg.entity.character.IRpgCharacter;
 import io.github.jevaengine.rpg.item.IItem;
 import io.github.jevaengine.rpg.item.IItemSlot;
 import io.github.jevaengine.rpg.item.IItemStore;
-import io.github.jevaengine.rpg.item.usr.UsrWieldTarget;
-import io.github.jevaengine.world.Direction;
-import io.github.jevaengine.world.entity.IEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +32,7 @@ public class UnequipItemCommand extends EntityVisit<IRpgCharacter> {
 
         IItem.IWieldTarget target = null;
 
-        for(IItem.IWieldTarget t : UsrWieldTarget.values()) {
+        for(IItem.IWieldTarget t : SpaceCharacterWieldTarget.values()) {
             if (t.getName().compareTo(wieldTarget) == 0)
             {
                 target = t;
