@@ -25,4 +25,5 @@ public interface IClientWorldHandler extends INetworkWorldHandler {
     boolean isOwner(String entityName);
 
     void disconnect(String reason);
+    void recieveChatMessage(String message);
 }

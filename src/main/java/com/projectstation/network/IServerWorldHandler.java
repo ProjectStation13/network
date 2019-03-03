@@ -18,4 +18,5 @@ public interface IServerWorldHandler extends INetworkWorldHandler {
     IServerEntityNetworkAdapter getAdapter(String entityName);
 
     boolean setNickname(String selectedNickname);
+    void transmitChatMessage(String message);
 }
