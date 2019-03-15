@@ -19,4 +19,6 @@ public interface IServerWorldHandler extends INetworkWorldHandler {
 
     boolean setNickname(String selectedNickname);
     void transmitChatMessage(String message);
+
+    WorldServerHistory getHistory();
 }

@@ -35,6 +35,20 @@ public class SimulateKeyboardKeysCommand extends EntityVisit<Dcpu> {
         return new ArrayList<>();
     }
 
+    @Override
+    public boolean overrides(WorldVisit v) {
+        if(!(v instanceof SimulateKeyboardKeysCommand))
+            return false;
+
+        SimulateKeyboardKeysCommand other = (SimulateKeyboardKeysCommand)v;
+
+        if(other.getEntityName().compareTo(getEntityName()) != 0)
+            return false;
+
+        keys.addAll(0, other.keys);
+
+        return true;
+    }
 
     public static class SimulatedKey implements Serializable {
         int code;

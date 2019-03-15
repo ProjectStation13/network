@@ -27,4 +27,9 @@ public class ServerGetTime implements IServerVisit {
         response.add(new ClientSetServerTime(creationTime, System.nanoTime() / 1000000));
         return response;
     }
+
+    @Override
+    public boolean trackHistory() {
+        return false;
+    }
 }

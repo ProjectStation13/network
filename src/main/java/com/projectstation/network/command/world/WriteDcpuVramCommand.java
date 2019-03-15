@@ -19,7 +19,7 @@ import java.util.Map;
 public class WriteDcpuVramCommand extends EntityVisit<Dcpu> {
     private static final Logger logger = LoggerFactory.getLogger(WriteDcpuVramCommand.class);
 
-    private final HashMap<Integer, Integer> writes;
+    private HashMap<Integer, Integer> writes;
 
     public WriteDcpuVramCommand(String name, HashMap<Integer, Integer> writes) {
         super(Dcpu.class, name);
@@ -42,5 +42,24 @@ public class WriteDcpuVramCommand extends EntityVisit<Dcpu> {
         }
 
         return new ArrayList<>();
+    }
+
+    @Override
+    public boolean overrides(WorldVisit v) {
+        if(!(v instanceof WriteDcpuVramCommand))
+            return false;
+
+        WriteDcpuVramCommand other = (WriteDcpuVramCommand)v;
+
+        if(other.getEntityName().compareTo(getEntityName()) != 0)
+            return false;
+
+        HashMap<Integer, Integer> newVram = new HashMap<>();
+        newVram.putAll(other.writes);
+        newVram.putAll(writes);
+
+        this.writes = newVram;
+
+        return true;
     }
 }

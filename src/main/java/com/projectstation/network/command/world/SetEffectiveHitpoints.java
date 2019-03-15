@@ -32,4 +32,14 @@ public class SetEffectiveHitpoints extends EntityVisit<SpaceCharacter> {
 
         return new ArrayList<>();
     }
+
+
+    @Override
+    public boolean overrides(WorldVisit v) {
+        if(!(v instanceof SetEffectiveHitpoints))
+            return false;
+
+        //Same entity?
+        return ((SetEffectiveHitpoints)v).getEntityName().compareTo(getEntityName()) == 0;
+    }
 }

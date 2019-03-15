@@ -37,4 +37,13 @@ public class SetEntityAnimationDirection extends EntityVisit<IEntity> {
 
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean overrides(WorldVisit v) {
+        if(!(v instanceof SetEntityAnimationDirection))
+            return false;
+
+        //Same entity?
+        return ((SetEntityAnimationDirection)v).getEntityName().compareTo(getEntityName()) == 0;
+    }
 }

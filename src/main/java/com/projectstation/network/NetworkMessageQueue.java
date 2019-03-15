@@ -8,27 +8,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class NetworkMessageQueue<T extends INetworkVisit> {
     private final Deque<T> visits = new LinkedList<>();
 
-    private void compress() {
-        boolean removed = true;
-
-        while (removed && visits.size() >= 2) {
-            removed = false;
-            T recent = visits.poll();
-            T prior = visits.poll();
-
-            if (recent.isPriorRedundant(prior)) {
-                visits.addFirst(recent);
-                removed = true;
-            } else {
-                visits.addFirst(prior);
-                visits.addFirst(recent);
-            }
-        }
-    }
-
     public T poll() {
         synchronized (visits) {
-            compress();
             return visits.poll();
         }
     }

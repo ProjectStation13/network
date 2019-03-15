@@ -72,13 +72,12 @@ public class SetEntityVelocityCommand extends EntityVisit<IEntity> {
         return new ArrayList<>();
     }
 
-
     @Override
-    public boolean isPriorRedundant(WorldVisit prior) {
-        if(!(prior instanceof SetEntityVelocityCommand))
+    public boolean overrides(WorldVisit newVisit) {
+        if(!(newVisit instanceof SetEntityVelocityCommand))
             return false;
 
-        SetEntityVelocityCommand c = (SetEntityVelocityCommand)prior;
+        SetEntityVelocityCommand c = (SetEntityVelocityCommand)newVisit;
 
         if(c.getEntityName().compareTo(getEntityName()) == 0) {
             return true;

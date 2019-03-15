@@ -20,7 +20,7 @@ public abstract class EntityVisit<T extends IEntity> extends WorldVisit {
         this.entityName = entityName;
     }
 
-    protected String getEntityName() {
+    public String getEntityName() {
         return entityName;
     }
 

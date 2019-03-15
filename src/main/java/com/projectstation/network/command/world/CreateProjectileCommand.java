@@ -62,4 +62,9 @@ public class CreateProjectileCommand extends WorldVisit {
 
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean trackHistory() {
+        return false;
+    }
 }
