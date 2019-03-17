@@ -50,6 +50,7 @@ public class SetEntityVelocityCommand extends EntityVisit<IEntity> {
                 if (deltaPos.getLength() > SLAVE_IDLE_OF_SYNC_DISTANCE) {
                     netEntity.setSteeringBehaviour(new SeekBehavior(entity.getBody(), 1.0f, 0.1f, new PointSubject(expectedLocation)));
                     netEntity.setSpeed(-1);
+                    entity.getBody().setLocation(location);
                 } else {
                     netEntity.setSteeringBehaviour(new ISteeringBehavior.NullSteeringBehavior());
                 }
