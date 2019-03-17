@@ -27,4 +27,9 @@ public class InteractDoorCommand extends EntityVisit<Door> {
 
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean trackHistory() {
+        return false;
+    }
 }

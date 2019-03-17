@@ -21,4 +21,9 @@ public class ClientDisconnect implements IClientVisit {
 
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean trackHistory() {
+        return false;
+    }
 }

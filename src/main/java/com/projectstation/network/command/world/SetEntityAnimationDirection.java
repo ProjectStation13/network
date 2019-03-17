@@ -25,7 +25,6 @@ public class SetEntityAnimationDirection extends EntityVisit<IEntity> {
 
     @Override
     public List<WorldVisit> visitEntity(INetworkWorldHandler handler, IEntity entity, IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) {
-
         if(!(entity.getModel() instanceof IAnimationSceneModel)) {
             logger.error("Entity model is not an animation scene model.");
             return new ArrayList<>();
@@ -36,5 +35,14 @@ public class SetEntityAnimationDirection extends EntityVisit<IEntity> {
         model.setDirection(direction);
 
         return new ArrayList<>();
+    }
+
+    @Override
+    public boolean overrides(WorldVisit v) {
+        if(!(v instanceof SetEntityAnimationDirection))
+            return false;
+
+        //Same entity?
+        return ((SetEntityAnimationDirection)v).getEntityName().compareTo(getEntityName()) == 0;
     }
 }

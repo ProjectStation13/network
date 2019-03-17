@@ -17,6 +17,10 @@ public class ClientWorldVisit implements IClientVisit {
         creationTime = System.nanoTime() / 1000000;
     }
 
+    public WorldVisit getWorldVisit() {
+        return worldVisit;
+    }
+
     @Override
     public List<IServerVisit> visit(IClientWorldHandler handler) throws VisitException {
         if(!handler.hasWorld())
@@ -33,11 +37,23 @@ public class ClientWorldVisit implements IClientVisit {
     }
 
     @Override
-    public boolean isPriorRedundant(INetworkVisit before) {
-        if(before instanceof ClientWorldVisit) {
-            return worldVisit.isPriorRedundant(((ClientWorldVisit) before).worldVisit);
-        }
+    public boolean mutuallyEliminates(INetworkVisit v) {
+        if(!(v instanceof ClientWorldVisit))
+            return false;
 
-        return false;
+        return worldVisit.mutuallyEliminates(((ClientWorldVisit)v).worldVisit);
+    }
+
+    @Override
+    public boolean overrides(INetworkVisit v) {
+        if(!(v instanceof ClientWorldVisit))
+            return false;
+
+        return worldVisit.overrides(((ClientWorldVisit)v).worldVisit);
+    }
+
+    @Override
+    public boolean trackHistory() {
+        return worldVisit.trackHistory();
     }
 }

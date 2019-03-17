@@ -33,13 +33,24 @@ public class ServerWorldVisit implements IServerVisit {
         return response;
     }
 
+    @Override
+    public boolean mutuallyEliminates(INetworkVisit v) {
+        if(!(v instanceof ClientWorldVisit))
+            return false;
+
+        return worldVisit.mutuallyEliminates(((ServerWorldVisit)v).worldVisit);
+    }
 
     @Override
-    public boolean isPriorRedundant(INetworkVisit before) {
-        if(before instanceof ServerWorldVisit) {
-            return worldVisit.isPriorRedundant(((ServerWorldVisit) before).worldVisit);
-        }
+    public boolean overrides(INetworkVisit v) {
+        if(!(v instanceof ClientWorldVisit))
+            return false;
 
-        return false;
+        return worldVisit.overrides(((ServerWorldVisit)v).worldVisit);
+    }
+
+    @Override
+    public boolean trackHistory() {
+        return worldVisit.trackHistory();
     }
 }

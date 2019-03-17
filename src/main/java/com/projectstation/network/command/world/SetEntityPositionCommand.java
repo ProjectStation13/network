@@ -1,6 +1,7 @@
 package com.projectstation.network.command.world;
 
 import com.projectstation.network.EntityVisit;
+import com.projectstation.network.IClientVisit;
 import com.projectstation.network.INetworkWorldHandler;
 import com.projectstation.network.WorldVisit;
 import com.projectstation.network.entity.IEntityNetworkAdapter;
@@ -27,5 +28,14 @@ public class SetEntityPositionCommand extends EntityVisit<IEntity> {
         entity.getBody().setLocation(location);
 
         return new ArrayList<>();
+    }
+
+    @Override
+    public boolean overrides(WorldVisit v) {
+        if(!(v instanceof SetEntityPositionCommand))
+            return false;
+
+        //Same entity?
+        return ((SetEntityPositionCommand)v).getEntityName().compareTo(getEntityName()) == 0;
     }
 }

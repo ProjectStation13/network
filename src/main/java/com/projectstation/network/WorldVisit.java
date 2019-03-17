@@ -12,7 +12,15 @@ public abstract class WorldVisit implements Serializable {
 
     public abstract List<WorldVisit> visit(INetworkWorldHandler handler, IEntityFactory entityFactory, World world, long timeElapsedSinceDispatch, boolean isServer) throws VisitException;
 
-    public boolean isPriorRedundant(WorldVisit prior) {
+    public boolean mutuallyEliminates(WorldVisit v) {
         return false;
+    }
+
+    public boolean overrides(WorldVisit v) {
+        return false;
+    }
+
+    public boolean trackHistory() {
+        return true;
     }
 }

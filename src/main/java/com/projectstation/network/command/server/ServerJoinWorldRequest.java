@@ -43,7 +43,10 @@ public class ServerJoinWorldRequest implements IServerVisit {
                 world.getMetersPerUnit(),
                 world.getLogicPerUnit()));
 
-        for(IEntity e : world.getEntities().all()) {
+        for(IClientVisit v : handler.getHistory().get()) {
+            response.add(v);
+        }
+        /*for(IEntity e : world.getEntities().all()) {
             IServerEntityNetworkAdapter net = handler.getAdapter(e.getInstanceName());
 
             try {
@@ -55,7 +58,7 @@ public class ServerJoinWorldRequest implements IServerVisit {
             } catch(EntityNetworkAdapterException ex) {
                 throw new VisitException(ex);
             }
-        }
+        }*/
 
         return response;
     }

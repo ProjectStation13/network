@@ -27,7 +27,6 @@ public class SetEntityAnimationState extends EntityVisit<IEntity> {
 
     @Override
     public List<WorldVisit> visitEntity(INetworkWorldHandler handler, IEntity entity, IEntityNetworkAdapter netEntity, long deltaTime, boolean isOwner) {
-
         if(!(entity.getModel() instanceof IAnimationSceneModel)) {
             logger.error("Entity model is not an animation scene model.");
             return new ArrayList<>();
@@ -45,5 +44,15 @@ public class SetEntityAnimationState extends EntityVisit<IEntity> {
         a.setState(state);
 
         return new ArrayList<>();
+    }
+
+    @Override
+    public boolean overrides(WorldVisit v) {
+        if(!(v instanceof SetEntityAnimationState))
+            return false;
+
+        SetEntityAnimationState other = (SetEntityAnimationState)v;
+        //Same entity?
+        return other.getEntityName().compareTo(getEntityName()) == 0 && other.animationName.compareTo(animationName) == 0;
     }
 }

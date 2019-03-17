@@ -36,4 +36,9 @@ public class CharacterInteractedWith extends EntityVisit<IInteractableEntity> {
 
         return new ArrayList<>();
     }
+    
+    @Override
+    public boolean trackHistory() {
+        return false;
+    }
 }

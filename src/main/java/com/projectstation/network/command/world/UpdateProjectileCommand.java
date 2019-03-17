@@ -32,4 +32,9 @@ public class UpdateProjectileCommand extends EntityVisit<IProjectile> {
         entity.setTravelDirection(direction);
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean trackHistory() {
+        return false;
+    }
 }

@@ -34,4 +34,13 @@ public class SetDoorStateCommand extends EntityVisit<Door> {
 
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean overrides(WorldVisit v) {
+        if(!(v instanceof SetDoorStateCommand))
+            return false;
+
+        //Same entity?
+        return ((SetDoorStateCommand)v).getEntityName().compareTo(getEntityName()) == 0;
+    }
 }
