@@ -1,24 +1,12 @@
 package com.projectstation.network;
 
-import com.projectstation.network.EntityVisit;
-import com.projectstation.network.IClientVisit;
-import com.projectstation.network.WorldVisit;
 import com.projectstation.network.command.client.ClientWorldVisit;
-import com.projectstation.network.command.world.SetEntityAnimationDirection;
-import com.sun.security.ntlm.Client;
 
 import java.util.*;
 
 public final class WorldServerHistory implements IImmutableWorldHistory {
-    static int count = 0;
     List<IClientVisit> history = new ArrayList<>();
     Map<String, List<IClientVisit>> worldVisits = new HashMap<>();
-
-    public void WorldServerHistory(List<IClientVisit> initial) {
-        for(IClientVisit v : initial) {
-            record(v);
-        }
-    }
 
     private void clear(IClientVisit v) {
         String entityName = getWorldVisitEntityName(v);
@@ -41,21 +29,6 @@ public final class WorldServerHistory implements IImmutableWorldHistory {
         return ev.getEntityName();
     }
 
-    private void store(IClientVisit visit) {
-        history.add(visit);
-
-        String entityName = getWorldVisitEntityName(visit);
-
-        if(entityName == null)
-            return;
-
-        if(!worldVisits.containsKey(entityName))
-            worldVisits.put(entityName, new ArrayList<>());
-
-        List<IClientVisit> namedVisits = worldVisits.get(entityName);
-        namedVisits.add(visit);
-    }
-
     public void eraseEntityHistory(String entityName) {
         if(!worldVisits.containsKey(entityName))
             return;
@@ -68,7 +41,6 @@ public final class WorldServerHistory implements IImmutableWorldHistory {
     }
 
     public void record(IClientVisit visit) {
-        WorldServerHistory.count += 1;
         if(!visit.trackHistory())
             return;
 
@@ -81,12 +53,6 @@ public final class WorldServerHistory implements IImmutableWorldHistory {
 
         if(entityName == null)
             return;
-
-        ClientWorldVisit vv = (ClientWorldVisit)visit;
-        if(vv.getWorldVisit() instanceof SetEntityAnimationDirection)
-        {
-            int i = 0;
-        }
 
         if(!worldVisits.containsKey(entityName))
             worldVisits.put(entityName, new ArrayList<>());
