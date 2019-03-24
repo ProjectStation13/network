@@ -1,9 +1,12 @@
 package com.projectstation.network;
 
+import com.jevaengine.spacestation.ui.selectclass.CharacterClassDescription;
 import com.projectstation.network.entity.IEntityNetworkAdapter;
 import com.projectstation.network.entity.IServerEntityNetworkAdapter;
 import io.github.jevaengine.world.World;
 import io.github.jevaengine.world.entity.IEntityFactory;
+
+import java.util.List;
 
 public interface IServerWorldHandler extends INetworkWorldHandler {
     void setClientTime(long time);
@@ -21,4 +24,7 @@ public interface IServerWorldHandler extends INetworkWorldHandler {
     void transmitChatMessage(String message);
 
     WorldServerHistory getHistory();
+
+    boolean selectClass(CharacterClassDescription cls);
+    List<CharacterClassDescription> getAvailableRoles();
 }

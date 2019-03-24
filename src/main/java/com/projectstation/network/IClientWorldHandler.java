@@ -1,11 +1,14 @@
 package com.projectstation.network;
 
+import com.jevaengine.spacestation.ui.selectclass.CharacterClassDescription;
 import io.github.jevaengine.world.IEffectMapFactory;
 import io.github.jevaengine.world.World;
 import io.github.jevaengine.world.entity.IEntity;
 import io.github.jevaengine.world.entity.IEntityFactory;
 import io.github.jevaengine.world.entity.IParallelEntityFactory;
 import io.github.jevaengine.world.physics.IPhysicsWorldFactory;
+
+import java.util.List;
 
 public interface IClientWorldHandler extends INetworkWorldHandler {
     void setPlayerEntity(String name);
@@ -26,4 +29,6 @@ public interface IClientWorldHandler extends INetworkWorldHandler {
 
     void disconnect(String reason);
     void recieveChatMessage(String message);
+
+    void requestRoleSelect(List<CharacterClassDescription> available);
 }
